@@ -7,6 +7,7 @@ import { ThemeContext } from '../../lib/theming/ThemeContext';
 import { Spinner } from '../Spinner';
 import { CommonWrapper, CommonProps } from '../../internal/CommonWrapper';
 import { cx } from '../../lib/theming/Emotion';
+import { getRDN } from '../../lib/getRDNDecorator';
 
 import { styles, activeStyles, globalClasses } from './Button.styles';
 import { Corners } from './Corners';
@@ -105,6 +106,7 @@ export interface ButtonState {
   focusedByTab: boolean;
 }
 
+@getRDN
 export class Button extends React.Component<ButtonProps, ButtonState> {
   public static __KONTUR_REACT_UI__ = 'Button';
   public static __BUTTON__ = true;
@@ -148,6 +150,8 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
   }
 
   public render(): JSX.Element {
+    // @ts-ignore
+    console.log(this.getRootDomNode());
     return (
       <ThemeContext.Consumer>
         {(theme) => {
@@ -379,10 +383,6 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
 
   private _ref = (node: HTMLButtonElement | null) => {
     this.node = node;
-  };
-
-  public getRootDomNode = () => {
-    return this.node;
   };
 }
 

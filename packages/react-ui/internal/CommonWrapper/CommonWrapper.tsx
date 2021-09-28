@@ -2,6 +2,7 @@ import React from 'react';
 
 import { isFunction } from '../../lib/utils';
 import { cx } from '../../lib/theming/Emotion';
+import { getRDN } from '../../lib/getRDNDecorator';
 
 export interface CommonProps {
   className?: React.HTMLAttributes<HTMLElement>['className'];
@@ -17,6 +18,7 @@ export type CommonWrapperProps<P> = P & {
 };
 export type CommonWrapperRestProps<P> = Omit<NotCommonProps<P>, 'children'>;
 
+@getRDN
 export class CommonWrapper<P extends CommonProps> extends React.Component<CommonWrapperProps<P>> {
   render() {
     const [{ className, style, ...dataProps }, { children, ...rest }] = extractCommonProps(this.props);
