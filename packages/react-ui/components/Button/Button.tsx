@@ -150,8 +150,6 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
   }
 
   public render(): JSX.Element {
-    // @ts-ignore
-    console.log(this.getRootDomNode());
     return (
       <ThemeContext.Consumer>
         {(theme) => {
@@ -312,7 +310,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
 
     return (
       <CommonWrapper {...this.props}>
-        <span {...wrapProps}>
+        <span {...wrapProps} ref={this.props.rootRef}>
           <button ref={this._ref} {...rootProps}>
             {outlineNode}
             {loadingNode}

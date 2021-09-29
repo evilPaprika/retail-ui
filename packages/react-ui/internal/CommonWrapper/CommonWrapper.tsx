@@ -2,13 +2,13 @@ import React from 'react';
 
 import { isFunction } from '../../lib/utils';
 import { cx } from '../../lib/theming/Emotion';
-import { getRDN } from '../../lib/getRDNDecorator';
 
 export interface CommonProps {
   className?: React.HTMLAttributes<HTMLElement>['className'];
   style?: React.HTMLAttributes<HTMLElement>['style'];
   /** На равне с data-tid транслируются любые data-атрибуты. Они попадают на корневой элемент. */
   'data-tid'?: string;
+  rootRef?: any;
 }
 
 export type NotCommonProps<P> = Omit<P, keyof CommonProps>;
@@ -18,7 +18,6 @@ export type CommonWrapperProps<P> = P & {
 };
 export type CommonWrapperRestProps<P> = Omit<NotCommonProps<P>, 'children'>;
 
-@getRDN
 export class CommonWrapper<P extends CommonProps> extends React.Component<CommonWrapperProps<P>> {
   render() {
     const [{ className, style, ...dataProps }, { children, ...rest }] = extractCommonProps(this.props);

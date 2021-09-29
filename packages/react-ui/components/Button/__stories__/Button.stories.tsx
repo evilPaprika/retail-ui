@@ -89,7 +89,11 @@ const combinationTest: CreeveyTests = {
   },
 };
 
-export const Playground: Story = () => <Button>Hello</Button>;
+const buttonRef = (e: any) => {
+  console.log(e.getRootDomNode())
+}
+
+export const Playground: Story = () => <Button ref={buttonRef}>Hello</Button>;
 Playground.storyName = 'playground';
 
 Playground.parameters = {
